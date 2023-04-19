@@ -8,4 +8,7 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+
+void print_prompt(void);
+
 #endif
