@@ -11,4 +11,6 @@
 
 void print_prompt(void);
 
+char **split_string(char *buf);
+
 #endif
