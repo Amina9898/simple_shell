@@ -12,6 +12,8 @@ int main(int argc, char **argv)
 	size_t n;
 	ssize_t get;
 	char *buf;
+	int i;
+	(void)argc;
 
 	while (1)
 	{
@@ -22,8 +24,10 @@ int main(int argc, char **argv)
 			free(buf);
 			exit(0);
 		}
-		printf("%s", buf);
-	}
+		argv = split_string(buf);
 
+		for (i = 0; argv[i] != NULL; i++)
+			printf("argv[%d] = %s\n", i, argv[i]);
+	}
 	return (0);
 }
