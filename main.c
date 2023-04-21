@@ -11,10 +11,10 @@ int main(int argc, char **argv)
 {
 	size_t n;
 	ssize_t get;
-	char *buf, *path;
-	char **path_array;
+	char *buf; /**path;
+	char **path_array;*/
+	char **string;
 	(void)argc;
-	(void)argv;
 
 	while (1)
 	{
@@ -25,9 +25,13 @@ int main(int argc, char **argv)
 			free(buf);
 			exit(0);
 		}
-		argv = split_string(buf);
-		path = getenv("PATH");
+		string = split_string(buf);
+		if (execve(string[0], string, environ) == -1)
+			perror(argv[0]);
+		/*path = getenv("PATH");
 		path_array = split_path(path);
+		if (path_array == NULL)
+			exit(0);*/
 	}
 	return (0);
 }
