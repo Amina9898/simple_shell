@@ -11,9 +11,10 @@ int main(int argc, char **argv)
 {
 	size_t n;
 	ssize_t get;
-	char *buf;
-	int i;
+	char *buf, *path;
+	char **path_array;
 	(void)argc;
+	(void)argv;
 
 	while (1)
 	{
@@ -25,9 +26,8 @@ int main(int argc, char **argv)
 			exit(0);
 		}
 		argv = split_string(buf);
-
-		for (i = 0; argv[i] != NULL; i++)
-			printf("argv[%d] = %s\n", i, argv[i]);
+		path = getenv("PATH");
+		path_array = split_path(path);
 	}
 	return (0);
 }

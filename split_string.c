@@ -35,7 +35,6 @@ char **split_string(char *buf)
 		free(argv);
 		return (NULL);
 	}
-
 	token = strtok(cpy_buf, delim);
 	for (i = 0; token != NULL; i++)
 	{
@@ -44,7 +43,6 @@ char **split_string(char *buf)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-
 	if (strcmp(argv[0], "exit") == 0)
 		exit(EXIT_SUCCESS);
 	free(cpy_buf);

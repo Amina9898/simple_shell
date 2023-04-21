@@ -9,8 +9,11 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+extern char **environ;
+
 void print_prompt(void);
 
 char **split_string(char *buf);
+char **split_path(char *path);
 
 #endif
