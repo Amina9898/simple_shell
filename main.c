@@ -25,6 +25,7 @@ int main(int argc, char **argv)
 			exit(0);
 		}
 		user_input = split_string(buf);
+		execute(user_input, argv[0]);
 	}
 	return (0);
 }
