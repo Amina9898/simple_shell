@@ -22,7 +22,6 @@ int main(int argc, char **argv)
 		if (get == -1)
 		{
 			free(buf);
-			printf("\n");
 			exit(0);
 		}
 		user_input = split_string(buf);

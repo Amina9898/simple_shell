@@ -10,5 +10,6 @@ void print_prompt(void)
 {
 	char *s = "#Cisnotfun ";
 
-	printf("%s", s);
+	if (isatty(STDIN_FILENO))
+		printf("%s", s);
 }
