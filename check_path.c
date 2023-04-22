@@ -42,7 +42,6 @@ char *check_path(char **argv)
 		}
 		if (stat(command, &st) == 0)
 			return (command);
-		free(command_path);
 	}
 	return (NULL);
 }
