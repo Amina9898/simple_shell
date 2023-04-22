@@ -32,7 +32,6 @@ void execute(char **av, char *name)
 					perror(command);
 					exit(EXIT_FAILURE);
 				}
-			
 			}
 			wait(&status);
 		}

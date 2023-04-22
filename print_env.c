@@ -4,7 +4,7 @@
   * print_env - function to print the current environment
   */
 
-void print_env()
+void print_env(void)
 {
 	char **s = environ;
 	int i = 0;
