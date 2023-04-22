@@ -14,6 +14,6 @@ extern char **environ;
 void print_prompt(void);
 
 char **split_string(char *buf);
-char **split_path(char *path);
+char *check_path(char **argv);
 
 #endif
