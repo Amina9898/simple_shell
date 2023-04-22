@@ -3,6 +3,7 @@
 /**
  * execute - function will excute command
  * @av: command array
+ * @name: name of the program
  */
 
 void execute(char **av, char *name)
@@ -31,9 +32,9 @@ void execute(char **av, char *name)
 					perror(command);
 					exit(EXIT_FAILURE);
 				}
+			
 			}
 			wait(&status);
 		}
-
 	}
 }

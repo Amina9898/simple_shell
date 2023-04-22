@@ -8,15 +8,12 @@
 
 char **split_string(char *buf)
 {
-	char *cpy_buf;
+	char *cpy_buf, *token;
 	char *delim = " \t\n";
-	int token_count = 0;
-	char *token;
+	int token_count = 0, i;
 	char **argv;
-	int i;
 
 	cpy_buf = strdup(buf);
-
 	token = strtok(buf, delim);
 
 	while (token)
@@ -45,6 +42,8 @@ char **split_string(char *buf)
 	argv[i] = NULL;
 	if (strcmp(argv[0], "exit") == 0)
 		exit(EXIT_SUCCESS);
+	if (strcmp(argv[0], "env") == 0)
+		print_env();
 	free(cpy_buf);
 	return (argv);
 }

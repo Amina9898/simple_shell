@@ -19,9 +19,9 @@ char *check_path(char **argv)
 	if (path != NULL)
 	{
 		cpy_path = strdup(path);
-		token = strtok(path, ":");
+		token = strtok(cpy_path, ":");
 
-		while (token)
+		while (token != NULL)
 		{
 			command_path = malloc(sizeof(char) * (strlen(command) + strlen(token) + 2));
 			strcpy(command_path, token);
@@ -40,9 +40,9 @@ char *check_path(char **argv)
 				token = strtok(NULL, ":");
 			}
 		}
+		free(cpy_path);
 		if (stat(command, &st) == 0)
 			return (command);
-		free(command_path);
 	}
 	return (NULL);
 }

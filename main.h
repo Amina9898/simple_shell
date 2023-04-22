@@ -18,4 +18,6 @@ char **split_string(char *buf);
 char *check_path(char **argv);
 
 void execute(char **av, char *name);
+
+void print_env(void);
 #endif
