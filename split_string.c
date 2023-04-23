@@ -9,13 +9,13 @@
 char **split_string(char *buf)
 {
 	char *cpy_buf, *token;
-	char *delim = " \t\n";
+	char *delim = " \n\t";
 	int token_count = 0, i;
 	char **argv;
 
 	cpy_buf = strdup(buf);
 	token = strtok(buf, delim);
-
+	
 	while (token)
 	{
 		token_count++;
@@ -23,7 +23,7 @@ char **split_string(char *buf)
 	}
 	token_count++;
 
-	argv = malloc(sizeof(char *) * token_count);
+	argv = malloc(sizeof(char *) * (token_count));
 
 	if (!argv)
 	{
@@ -35,7 +35,7 @@ char **split_string(char *buf)
 	token = strtok(cpy_buf, delim);
 	for (i = 0; token != NULL; i++)
 	{
-		argv[i] = malloc(sizeof(char) * strlen(token));
+		argv[i] = malloc(sizeof(char) * (strlen(token) + 1));
 		strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}

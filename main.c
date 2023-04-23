@@ -9,21 +9,25 @@
 
 int main(int argc, char **argv)
 {
-	size_t n;
+	size_t n = 0;
 	ssize_t get;
-	char *buf;
+	char *buf = NULL;
 	char **user_input;
-	(void)argc;
+	(void) argc;
+	
+	buf = malloc(sizeof(char) *n);
 
 	while (1)
-	{
+	{	
 		print_prompt();
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
 			free(buf);
-			exit(0);
+			break;
 		}
+		if (strcmp(buf, "\n") == 0)
+			continue;
 		user_input = split_string(buf);
 		execute(user_input, argv[0]);
 	}
