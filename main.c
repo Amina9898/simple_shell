@@ -23,7 +23,9 @@ int main(int argc, char **argv)
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
-			break;
+			write(1, "\n", 1);
+			free(buf);
+			exit(EXIT_FAILURE);
 		}
 		if (_strcmp(buf, "\n") == 0)
 			continue;

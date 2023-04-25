@@ -30,7 +30,6 @@ char **split_string(char *buf)
 		free(argv);
 		return (NULL);
 	}
-	free(buf);
 	token = strtok(cpy_buf, delim);
 	for (i = 0; token != NULL; i++)
 	{
