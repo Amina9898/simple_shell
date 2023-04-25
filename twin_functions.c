@@ -89,7 +89,7 @@ int _strcmp(char *s1, char *s2)
 
 int _strlen(char *string)
 {
-	int len;
+	int len = 0;
 
 	while (*string != '\0')
 	{

@@ -10,14 +10,14 @@
 int main(int argc, char **argv)
 {
 	size_t n = 0;
-	ssize_t get;
+	ssize_t get = 0;
 	char *buf = NULL;
 	char **user_input = NULL;
 	(void) argc;
 
 
 
-	while (1)
+	while (get != EOF)
 	{
 		print_prompt();
 		get = getline(&buf, &n, stdin);
