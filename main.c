@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 			free(buf);
 			break;
 		}
-		if (strcmp(buf, "\n") == 0)
+		if (_strcmp(buf, "\n") == 0)
 			continue;
 		user_input = split_string(buf);
 		execute(user_input, argv[0]);

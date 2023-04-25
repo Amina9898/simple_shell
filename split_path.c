@@ -10,7 +10,7 @@ char **split_path(char *path)
 {
 	char **path_array;
 	char *token;
-	char *cpy_path = strdup(path);
+	char *cpy_path = _strdup(path);
 	int token_count = 0, i;
 
 	token = strtok(path, ":");
@@ -30,8 +30,8 @@ char **split_path(char *path)
 	token = strtok(cpy_path, ":");
 	for (i = 0; token != NULL; i++)
 	{
-		path_array[i] = malloc(sizeof(char) * strlen(token));
-		strcpy(path_array[i], token);
+		path_array[i] = malloc(sizeof(char) * _strlen(token));
+		_strcpy(path_array[i], token);
 		token = strtok(NULL, ":");
 	}
 	path_array[i] = NULL;

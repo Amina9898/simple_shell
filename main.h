@@ -23,4 +23,15 @@ void execute(char **av, char *name);
 void print_env(void);
 
 void _free(char **argv);
+
+int _strlen(char *string);
+
+char *_strcpy(char *s1, char *s2);
+
+char *_strcat(char *s1, char *s2);
+
+int _strcmp(char *s1, char *s2);
+
+char *_strdup(char *string);
+
 #endif
