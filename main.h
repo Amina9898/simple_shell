@@ -21,4 +21,6 @@ char *check_path(char **argv);
 void execute(char **av, char *name);
 
 void print_env(void);
+
+void _free(char **argv);
 #endif

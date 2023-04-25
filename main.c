@@ -14,11 +14,11 @@ int main(int argc, char **argv)
 	char *buf = NULL;
 	char **user_input;
 	(void) argc;
-	
-	buf = malloc(sizeof(char) *n);
+
+	buf = malloc(sizeof(char) * n);
 
 	while (1)
-	{	
+	{
 		print_prompt();
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
@@ -31,5 +31,7 @@ int main(int argc, char **argv)
 		user_input = split_string(buf);
 		execute(user_input, argv[0]);
 	}
+	free(buf);
+	_free(user_input);
 	return (0);
 }
