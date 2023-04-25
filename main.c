@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	size_t n = 0;
 	ssize_t get;
 	char *buf = NULL;
-	char **user_input;
+	char **user_input = NULL;
 	(void) argc;
 
 
@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
-			free(buf);
 			break;
 		}
 		if (_strcmp(buf, "\n") == 0)

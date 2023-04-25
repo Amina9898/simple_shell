@@ -8,9 +8,9 @@
 
 char **split_string(char *buf)
 {
-	char *cpy_buf, *token, *delim = " \n\t";
+	char *cpy_buf = NULL , *token, *delim = " \n\t";
 	int token_count = 0, i;
-	char **argv;
+	char **argv = NULL;
 
 	cpy_buf = _strdup(buf);
 	token = strtok(buf, delim);
@@ -30,6 +30,7 @@ char **split_string(char *buf)
 		free(argv);
 		return (NULL);
 	}
+	free(buf);
 	token = strtok(cpy_buf, delim);
 	for (i = 0; token != NULL; i++)
 	{
@@ -40,7 +41,6 @@ char **split_string(char *buf)
 	argv[i] = NULL;
 	if (_strcmp(argv[0], "exit") == 0)
 	{
-		_free(argv);
 		free(cpy_buf);
 		exit(EXIT_SUCCESS);
 	}

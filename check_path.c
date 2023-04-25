@@ -9,7 +9,7 @@
 char *check_path(char **argv)
 {
 	char *path, *cpy_path, *token, *command;
-	char *command_path;
+	char *command_path = NULL;
 	struct stat st;
 
 	if (argv && argv[0])
@@ -23,7 +23,8 @@ char *check_path(char **argv)
 
 		while (token != NULL)
 		{
-			command_path = malloc(sizeof(char) * (_strlen(command) + _strlen(token) + 2));
+			command_path = malloc(sizeof(char) *
+					(_strlen(command) + _strlen(token) + 2));
 			_strcpy(command_path, token);
 			_strcat(command_path, "/");
 			_strcat(command_path, command);
