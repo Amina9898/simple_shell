@@ -11,5 +11,5 @@ void print_prompt(void)
 	char *s = "#Cisnotfun ";
 
 	if (isatty(STDIN_FILENO))
-		write (1, s, 11);
+		write(1, s, 11);
 }

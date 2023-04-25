@@ -8,7 +8,7 @@
 
 char **split_string(char *buf)
 {
-	char *cpy_buf = NULL , *token, *delim = " \n\t";
+	char *cpy_buf = NULL, *token, *delim = " \n\t";
 	int token_count = 0, i;
 	char **argv = NULL;
 
