@@ -41,6 +41,7 @@ char **split_string(char *buf)
 	if (strcmp(argv[0], "exit") == 0)
 	{
 		_free(argv);
+		free(cpy_buf);
 		exit(EXIT_SUCCESS);
 	}
 	if (strcmp(argv[0], "env") == 0)

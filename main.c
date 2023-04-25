@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	char **user_input;
 	(void) argc;
 
-	buf = malloc(sizeof(char) * n);
+
 
 	while (1)
 	{
