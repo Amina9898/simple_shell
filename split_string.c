@@ -8,7 +8,8 @@
 
 char **split_string(char *buf)
 {
-	char *cpy_buf = NULL, *token, *delim = " \n";
+	char *cpy_buf = NULL, *token;
+	const char *delim = " \t\r\a\n";
 	int token_count = 0, i;
 	char **argv = NULL;
 
@@ -41,7 +42,6 @@ char **split_string(char *buf)
 	if ((_strcmp(argv[0], "exit") == 0) && argv[1] == NULL)
 	{
 		free(cpy_buf);
-		_free(argv);
 		exit(0);
 	}
 	if ((_strcmp(argv[0], "env") == 0) && argv[1] == NULL)

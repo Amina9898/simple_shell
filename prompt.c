@@ -8,8 +8,12 @@
 
 void print_prompt(void)
 {
-	char *s = "#Cisnotfun ";
+	char *s = {"#Cisnotfun "};
+	char *buf = getcwd(NULL, 0);
 
 	if (isatty(STDIN_FILENO))
-		write(1, s, 11);
+	{
+		write(STDOUT_FILENO, s, _strlen(s));
+	}
+	free(buf);
 }

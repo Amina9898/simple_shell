@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 		user_input = split_string(buf);
 		execute(user_input, argv[0]);
 	}
-	free(buf);
 	_free(user_input);
+	free(buf);
 	return (0);
 }
