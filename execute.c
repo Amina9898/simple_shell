@@ -30,6 +30,8 @@ void execute(char **av, char *name)
 				if (execve(command, av, environ) == -1)
 				{
 					perror(command);
+					free(command);
+					_free(av);
 					exit(EXIT_FAILURE);
 				}
 			}

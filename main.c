@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
-			write(1, "\n", 1);
 			free(buf);
 			exit(EXIT_FAILURE);
 		}
@@ -32,7 +31,7 @@ int main(int argc, char **argv)
 		user_input = split_string(buf);
 		execute(user_input, argv[0]);
 	}
-	_free(user_input);
 	free(buf);
+	_free(user_input);
 	return (0);
 }

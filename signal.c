@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * signal - handels the signals
+ * _signal - handels the signals
  * @sig: Signal identifier
  *
  * Return: nothing
