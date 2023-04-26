@@ -1,6 +1,27 @@
 #include "main.h"
 
 /**
+  * EOF_handle - function to handle end of file
+  * @get : getline return
+  * @buf : string from standard output
+  */
+
+void EOF_handle(int get, char *buf)
+{
+	(void)buf;
+
+	if (get == -1)
+	{
+		if (isatty(STDIN_FILENO))
+		{
+			printf("\n");
+			free(buf);
+		}
+		exit(0);
+	}
+}
+
+/**
  * main - main function
  * @argc: number of arguments
  * @argv: array of pinters
@@ -15,19 +36,15 @@ int main(int argc, char **argv)
 	char **user_input = NULL;
 	(void) argc;
 
+	signal(SIGINT, sig_handler);
+
 
 
 	while (get != EOF)
 	{
 		print_prompt();
 		get = getline(&buf, &n, stdin);
-		if (get == -1)
-		{
-			free(buf);
-			exit(EXIT_FAILURE);
-		}
-		if (_strcmp(buf, "\n") == 0)
-			continue;
+		EOF_handle(get, buf);
 		user_input = split_string(buf);
 		execute(user_input, argv[0]);
 	}

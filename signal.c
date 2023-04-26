@@ -1,14 +1,16 @@
 #include "main.h"
 
 /**
- * _signal - handels the signals
+ * sig_handler - handels the signals
  * @sig: Signal identifier
  *
  * Return: nothing
  */
 
-void _signal(int sig)
+void sig_handler(int sig)
 {
-	if (sig == SIGINT)
-		write(STDOUT_FILENO, "\n#Cisnotfun ", 12);
+	(void) sig;
+
+	write(STDOUT_FILENO, "\n#Cisnotfun ", 12);
+	fflush(stdout);
 }

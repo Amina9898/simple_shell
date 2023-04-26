@@ -34,4 +34,8 @@ int _strcmp(char *s1, char *s2);
 
 char *_strdup(char *string);
 
+void EOF_handle(int get, char *buf);
+
+void sig_handler(int sig);
+
 #endif
