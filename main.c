@@ -17,14 +17,15 @@ int main(int argc, char **argv)
 
 
 
-	while (1)
+	while (get != EOF)
 	{
 		print_prompt();
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
+			write(1, "\n", 1);
 			free(buf);
-			break;
+			exit(EXIT_FAILURE);
 		}
 		if (_strcmp(buf, "\n") == 0)
 			continue;
