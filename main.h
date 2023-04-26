@@ -14,7 +14,9 @@ extern char **environ;
 
 void print_prompt(void);
 
-char **split_string(char *buf);
+char *get_line(void);
+
+char **split_string(char *buf, char **env);
 
 char *check_path(char **argv);
 
@@ -33,8 +35,6 @@ char *_strcat(char *s1, char *s2);
 int _strcmp(char *s1, char *s2);
 
 char *_strdup(char *string);
-
-void EOF_handle(int get, char *buf);
 
 void sig_handler(int sig);
 

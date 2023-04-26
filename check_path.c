@@ -19,7 +19,7 @@ char *check_path(char **av)
 	if (path != NULL)
 	{
 		cpy_path = _strdup(path);
-		token = strtok(cpy_path, ":");
+		token = strtok(cpy_path, ":=");
 
 		while (token != NULL)
 		{
@@ -38,7 +38,7 @@ char *check_path(char **av)
 			else
 			{
 				free(command_path);
-				token = strtok(NULL, ":");
+				token = strtok(NULL, ":=");
 			}
 		}
 		free(cpy_path);

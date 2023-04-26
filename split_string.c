@@ -3,15 +3,17 @@
 /**
  * split_string - function will parse input
  * @buf: buffer string
+ * @env: environment argument
  * Return: pointer to an array of strings
  */
 
-char **split_string(char *buf)
+char **split_string(char *buf, char **env)
 {
 	char *cpy_buf = NULL, *token;
 	const char *delim = " \t\r\a\n";
 	int token_count = 0, i;
 	char **argv = NULL;
+	(void) env;
 
 	if (buf == NULL || _strcmp(buf, "\n") == 0)
 		return (0);
