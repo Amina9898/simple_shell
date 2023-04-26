@@ -22,7 +22,7 @@ char *check_path(char **argv);
 
 void execute(char **av, char *name);
 
-void print_env(void);
+void print_env(char **env);
 
 void _free(char **argv);
 
