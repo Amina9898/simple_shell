@@ -19,13 +19,16 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		print_prompt();
+		signal(SIGINT, _signal);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "#Cisnotfun ", 11); 
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
-			write(1, "\n", 1);
+			if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "\n", 1);
 			free(buf);
-			exit(EXIT_FAILURE);
+			break;
 		}
 		if (_strcmp(buf, "\n") == 0)
 			continue;

@@ -18,17 +18,17 @@ char *check_path(char **argv)
 	path = getenv("PATH");
 	if (path != NULL)
 	{
-		cpy_path = strdup(path);
+		cpy_path = _strdup(path);
 		token = strtok(cpy_path, ":");
 
 		while (token != NULL)
 		{
 			command_path = malloc(sizeof(char) *
-					(strlen(command) + strlen(token) + 2));
-			strcpy(command_path, token);
-			strcat(command_path, "/");
-			strcat(command_path, command);
-			strcat(command_path, "\0");
+					(_strlen(command) + _strlen(token) + 2));
+			_strcpy(command_path, token);
+			_strcat(command_path, "/");
+			_strcat(command_path, command);
+			_strcat(command_path, "\0");
 
 			if (stat(command_path, &st) == 0)
 			{

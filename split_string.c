@@ -12,7 +12,7 @@ char **split_string(char *buf)
 	int token_count = 0, i;
 	char **argv = NULL;
 
-	cpy_buf = strdup(buf);
+	cpy_buf = _strdup(buf);
 	token = strtok(buf, delim);
 
 	while (token)
@@ -34,16 +34,16 @@ char **split_string(char *buf)
 	for (i = 0; token != NULL; i++)
 	{
 		argv[i] = malloc(sizeof(char) * (_strlen(token) + 1));
-		strcpy(argv[i], token);
+		_strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	if (strcmp(argv[0], "exit") == 0)
+	if (_strcmp(argv[0], "exit") == 0)
 	{
 		free(cpy_buf);
 		exit(EXIT_SUCCESS);
 	}
-	if (strcmp(argv[0], "env") == 0)
+	if (_strcmp(argv[0], "env") == 0)
 		print_env();
 	free(cpy_buf);
 	return (argv);
