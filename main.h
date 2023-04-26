@@ -38,4 +38,6 @@ void EOF_handle(int get, char *buf);
 
 void sig_handler(int sig);
 
+char *_getenv(char *name);
+
 #endif

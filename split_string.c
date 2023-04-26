@@ -12,9 +12,8 @@ char **split_string(char *buf)
 	int token_count = 0, i;
 	char **argv = NULL;
 
-	if (buf == NULL || strcmp(buf, "\n") == 0)
+	if (buf == NULL || _strcmp(buf, "\n") == 0)
 		return (0);
-
 	cpy_buf = _strdup(buf);
 	token = strtok(buf, delim);
 
@@ -39,13 +38,13 @@ char **split_string(char *buf)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	if ((strcmp(argv[0], "exit") == 0) && argv[1] == NULL)
+	if ((_strcmp(argv[0], "exit") == 0) && argv[1] == NULL)
 	{
 		free(cpy_buf);
 		_free(argv);
 		exit(0);
 	}
-	if ((strcmp(argv[0], "env") == 0) && argv[1] == NULL)
+	if ((_strcmp(argv[0], "env") == 0) && argv[1] == NULL)
 		print_env();
 	free(cpy_buf);
 	return (argv);

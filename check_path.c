@@ -2,20 +2,20 @@
 
 /**
   * check_path - function to split path into array
-  * @argv: list of arguments
+  * @av: list of arguments
   * Return: will return full path of command
   */
 
-char *check_path(char **argv)
+char *check_path(char **av)
 {
 	char *path, *cpy_path, *token, *command;
 	char *command_path = NULL;
 	struct stat st;
 
-	if (argv && argv[0])
-		command = argv[0];
+	if (av && av[0])
+		command = av[0];
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	if (path != NULL)
 	{
 		cpy_path = _strdup(path);
