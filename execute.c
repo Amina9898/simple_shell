@@ -12,30 +12,29 @@ void execute(char **av, char *name)
 	pid_t child;
 	int status;
 
-	if (av && av[0])
-	{
-		command = check_path(av);
+	if (!av || !av[0])
+		return;
 
-		if (command == NULL)
+	command = check_path(av);
+
+	if (command == NULL)
+	{
+		perror(name);
+	}
+	else
+	{
+		child = fork();
+		if (child < 0)
 		{
-			perror(name);
+			perror("./hsh: ");
+			exit(1);
 		}
-		else
+		if (child == 0)
 		{
-			child = fork();
-			if (child == -1)
-				perror("Fork Error");
-			if (child == 0)
-			{
-				if (execve(command, av, environ) == -1)
-				{
-					perror(command);
-					free(command);
-					_free(av);
-					exit(EXIT_FAILURE);
-				}
-			}
-			wait(&status);
+			execve(command, av, environ);
+				perror(command);
+			exit(EXIT_FAILURE);
 		}
+		wait(&status);
 	}
 }

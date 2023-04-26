@@ -8,9 +8,12 @@
 
 char **split_string(char *buf)
 {
-	char *cpy_buf = NULL, *token, *delim = " \n\t";
+	char *cpy_buf = NULL, *token, *delim = " \n";
 	int token_count = 0, i;
 	char **argv = NULL;
+
+	if (buf == NULL || strcmp(buf, "\n") == 0)
+		return (0);
 
 	cpy_buf = _strdup(buf);
 	token = strtok(buf, delim);
@@ -26,9 +29,7 @@ char **split_string(char *buf)
 	if (!argv)
 	{
 		perror("Memorry Allocation Error");
-		free(cpy_buf);
-		free(argv);
-		return (NULL);
+		exit(EXIT_FAILURE);
 	}
 	token = strtok(cpy_buf, delim);
 	for (i = 0; token != NULL; i++)
@@ -38,12 +39,13 @@ char **split_string(char *buf)
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
-	if (_strcmp(argv[0], "exit") == 0)
+	if ((strcmp(argv[0], "exit") == 0) && argv[1] == NULL)
 	{
 		free(cpy_buf);
-		exit(EXIT_SUCCESS);
+		_free(argv);
+		exit(0);
 	}
-	if (_strcmp(argv[0], "env") == 0)
+	if ((strcmp(argv[0], "env") == 0) && argv[1] == NULL)
 		print_env();
 	free(cpy_buf);
 	return (argv);
