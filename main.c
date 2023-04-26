@@ -19,14 +19,10 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		signal(SIGINT, _signal);
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "#Cisnotfun ", 11); 
+		print_prompt();
 		get = getline(&buf, &n, stdin);
 		if (get == -1)
 		{
-			if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
 			free(buf);
 			break;
 		}
