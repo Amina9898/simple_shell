@@ -1,79 +1,54 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <sys/wait.h>
+#include "main.h"
 
-#define MAX_LINE 80
+/**
+  * EOF_handle - function to handle end of file
+  * @get : getline return
+  * @buf : string from standard output
+  */
 
-int main(void)
+void EOF_handle(int get, char *buf)
 {
-    char *args[MAX_LINE/2 + 1];
-    char *cmd = NULL;
-    size_t cmd_size = 0;
-    int should_run = 1;
-    int exit_status = 0;
-    pid_t pid;
-    char **env = __environ;
-    int i;
-    char *token;
+	(void)buf;
 
-    while (should_run)
-    {
-        printf("osh> ");
-        fflush(stdout);
+	if (get == -1)
+	{
+		if (isatty(STDIN_FILENO))
+		{
+			printf("\n");
+			free(buf);
+		}
+		exit(0);
+	}
+}
 
-        if (getline(&cmd, &cmd_size, stdin) == -1)
-        {
-            break;
-        }
+/**
+ * main - main function
+ * @argc: number of arguments
+ * @argv: array of pinters
+ * Return: 0 on success
+ */
 
-        i = 0;
-        token = strtok(cmd, " \t\n");
-        while (token != NULL)
-        {
-            args[i++] = token;
-            token = strtok(NULL, " \t\n");
-        }
-        args[i] = NULL;
+int main(int argc, char **argv)
+{
+	size_t n = 0;
+	ssize_t get = 0;
+	char *buf = NULL;
+	char **user_input = NULL;
+	(void) argc;
 
-        if (strcmp(args[0], "exit") == 0)
-        {
-            if (args[1] != NULL)
-            {
-                exit_status = atoi(args[1]);
-            }
-            exit(exit_status);
-        }
+	signal(SIGINT, sig_handler);
 
-        if (strcmp(args[0], "env") == 0)
-        {
-            while (*env)
-            {
-                printf("%s\n", *env++);
-            }
-            continue;
-        }
 
-        pid = fork();
-        if (pid < 0)
-        {
-            fprintf(stderr, "Failed to fork process\n");
-            return 1;
-        }
 
-        if (pid == 0)
-        {
-            execve(args[0], args, env);
-            fprintf(stderr, "Failed to execute command: %s\n", args[0]);
-            exit(1);
-        }
-        else
-        {
-            wait(NULL);
-        }
-    }
-
-    free(cmd);
-    return 0;
+	while (get != EOF)
+	{
+		print_prompt();
+		get = getline(&buf, &n, stdin);
+		EOF_handle(get, buf);
+		user_input = split_string(buf);
+		execute(user_input, argv[0]);
+	}
+	_free(user_input);
+	free(buf);
+	return (0);
 }
