@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
 
 
-	while (get != EOF)
+	while (1)
 	{
 		print_prompt();
 		get = getline(&buf, &n, stdin);
