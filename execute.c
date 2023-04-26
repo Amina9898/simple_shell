@@ -3,38 +3,44 @@
 /**
  * execute - function will excute command
  * @av: command array
- * @name: name of the program
+ * @stat: status of cmd
+ * @env: environment array
+ * @argv: arguments to main function
+ * Return: 1 or error
  */
 
-void execute(char **av, char *name)
+int execute(char **av, int stat, char **env, char **argv)
 {
-	char *command;
 	pid_t child;
 	int status;
 
-	if (!av || !av[0])
-		return;
+	if (av == NULL)
+		return (-1);
 
-	command = check_path(av);
-
-	if (command == NULL)
+	child = fork();
+	if (child < 0)
 	{
-		perror(name);
+		perror("./hsh: ");
+		exit(1);
+	}
+	else if (child == 0)
+	{
+		if (execve(av[0], av, env) == -1)
+		{
+			handle_error(argv[0], av[0]);
+			free(av);
+			exit(1);
+		}
+		exit(0);
 	}
 	else
 	{
-		child = fork();
-		if (child < 0)
+		if (stat == 1)
 		{
-			perror("./hsh: ");
-			exit(1);
+			free(av[0]);
 		}
-		if (child == 0)
-		{
-			execve(command, av, environ);
-				perror(command);
-			exit(EXIT_FAILURE);
-		}
-		wait(&status);
+		free(av);
+		waitpid(child, &status, WUNTRACED);
 	}
+	return (1);
 }

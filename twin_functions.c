@@ -38,24 +38,40 @@ char *_strdup(char *string)
 
 char *_strcat(char *s1, char *s2)
 {
-	int i = 0, n;
+	char *dst;
+	unsigned int i, j, size;
 
-	while (s1[i] != '\0')
+	/*If the array is empty*/
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	/*count size total*/
+	size = (_strlen(s1) + _strlen(s2) + 1);
+
+	/*malloc*/
+	dst = (char *) malloc(size * sizeof(char));
+
+	if (dst == 0)
 	{
-		i++;
+		return (NULL);
 	}
 
-	for (n = 0; s2[n] != '\0'; n++)
+	/*Concatenate arrays*/
+	for (i = 0; *(s1 + i) != '\0'; i++)
+		*(dst + i) = *(s1 + i);
+
+	for (j = 0; *(s2 + j) != '\0'; j++)
 	{
-		s1[i] = s2[n];
+		*(dst + i) = *(s2 + j);
 		i++;
 	}
-	s1[i] = '\0';
+	dst[i] = '\0';
 
-	return (s1);
-
+	return (dst);
 }
-
 /**
  * _strcmp - function compares two strings
  * @s1: first string

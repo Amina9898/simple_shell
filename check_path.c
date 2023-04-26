@@ -2,48 +2,36 @@
 
 /**
   * check_path - function to split path into array
-  * @av: list of arguments
-  * Return: will return full path of command
+  * @path: path variable
+  * Return: will return path as array
   */
 
-char *check_path(char **av)
+char **check_path(char *path)
 {
-	char *path, *cpy_path, *token, *command;
-	char *command_path = NULL;
-	struct stat st;
+	char *cpy_path = NULL, *token = NULL;
+	const char *delim = ":=";
+	char **path_tokens = calloc(sizeof(char *), 64);
+	int i = 0;
 
-	if (av && av[0])
-		command = av[0];
-
-	path = _getenv("PATH");
-	if (path != NULL)
+	if (path == NULL)
 	{
-		cpy_path = _strdup(path);
-		token = strtok(cpy_path, ":=");
-
-		while (token != NULL)
-		{
-			command_path = malloc(sizeof(char) *
-					(_strlen(command) + _strlen(token) + 2));
-			_strcpy(command_path, token);
-			_strcat(command_path, "/");
-			_strcat(command_path, command);
-			_strcat(command_path, "\0");
-
-			if (stat(command_path, &st) == 0)
-			{
-				free(cpy_path);
-				return (command_path);
-			}
-			else
-			{
-				free(command_path);
-				token = strtok(NULL, ":=");
-			}
-		}
-		free(cpy_path);
-		if (stat(command, &st) == 0)
-			return (command);
+		free(path);
+		return (0);
 	}
-	return (NULL);
+	if (path_tokens == NULL)
+	{
+		free(path);
+		perror("Allocated Memorry Error: ");
+		return (NULL);
+	}
+	cpy_path = strdup(path);
+	token = strtok(cpy_path, delim);
+
+	while (token != NULL)
+	{
+		path_tokens[i] = token;
+		i++;
+		token = strtok(NULL, delim);
+	}
+	return (path_tokens);
 }

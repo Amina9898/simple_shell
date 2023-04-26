@@ -14,10 +14,10 @@ char **split_string(char *buf, char **env)
 	int token_count = 0;
 	char **argv = NULL;
 
-	if (buf == NULL || _strcmp(buf, "\n") == 0)
+	if (buf == NULL)
 		return (0);
 
-	argv = malloc(sizeof(char *) * 64);
+	argv = calloc(sizeof(char *), 64);
 	if (argv == NULL)
 	{
 		perror("Memorry Allocation Error");
@@ -37,7 +37,7 @@ char **split_string(char *buf, char **env)
 	if ((_strcmp(argv[0], "exit") == 0) && argv[1] == NULL)
 	{
 		free(buf);
-		_free(argv);
+		free(argv);
 		exit(0);
 	}
 	if ((_strcmp(argv[0], "env") == 0) && argv[1] == NULL)

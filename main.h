@@ -18,9 +18,13 @@ char *get_line(void);
 
 char **split_string(char *buf, char **env);
 
-char *check_path(char **argv);
+char **check_path(char *path);
 
-void execute(char **av, char *name);
+char **search_env(char **env);
+
+int cmd_status(char **user_input, char **path);
+
+int execute(char **user_input, int status, char **env, char **argv);
 
 void print_env(char **env);
 
@@ -39,5 +43,7 @@ char *_strdup(char *string);
 void sig_handler(int sig);
 
 char *_getenv(char *name);
+
+int handle_error(char *argv, char *cmd);
 
 #endif
