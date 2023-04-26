@@ -43,5 +43,3 @@ char *get_line(void)
 	}
 	return (buf);
 }
-
-
